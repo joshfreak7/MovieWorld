@@ -1,0 +1,23 @@
+{
+  "name": "movies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server --baseDir='src'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitLinda/Movies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gitLinda/Movies/issues"
+  },
+  "homepage": "https://github.com/gitLinda/Movies#readme",
+  "devDependencies": {
+    "lite-server": "2.3.0"
+  }
+}
