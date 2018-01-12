@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Worfgfghfghld</title>
-    <link rel="stylesheet" href="./css/index.css" />
+    <title>Movie World</title>
 </head>
-<body onload="findMovie()">
-
-<div id="result">
-
+<body>
+<form class="well search-bar">
+    <input id="search-input" type="text" class="form-control" style="display: inline-block;">
+    <button id="search-btn" class="btn btn-sm btn-default">find movies</button>
+</form>
+<div id ="buttons">
+    <button id="best-rated-btn" class="btn btn-sm btn-default">Best Rated Movies</button>
+    <button id="most-popular-btn" class="btn btn-sm btn-default">Most Popular Movies</button>
+    <button id="favorites-btn" class="btn btn-sm btn-default">Favorites</button>
+</div>
+<div>
+    <ul id="result" class="list-group"></ul>
 </div>
 
 <div class="footer">
-    <img src="resources/tmdb_logo.png" alt="tmdb logo" style="width:50px;height:50px;"><br>
+    <div class="tmdb-logo"></div>
     <span>This product uses the TMDb API but is not endorsed or certified by TMDb.</span>
 </div>
 
-<script src="app/app.js"></script>
 </body>
 </html>
