@@ -12,6 +12,7 @@ const $search = $('#search-bar');
 const $searchBtn = $('#search-btn');
 const $bestRatedBtn = $('#best-rated-btn');
 const $mostPopularBtn = $('#most-popular-btn');
+const $upcomingBtn = $('#upcoming-btn');
 const $favoritesBtn = $('#favorites-btn');
 
 $searchInput.on('blur', doSearch);
@@ -19,6 +20,7 @@ $search.on('submit', doSearch);
 $searchBtn.on('click', doSearch);
 $bestRatedBtn.on('click', showBestRated);
 $mostPopularBtn.on('click', showMostPopular);
+$upcomingBtn.on('click', showUpcoming);
 $favoritesBtn.on('click', showFavorites);
 
 const model = createModel();
@@ -42,7 +44,7 @@ function renderMovies() {
 
 function doSearch() {
     const query = $searchInput.val();
-    const url = 'https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&query=' + query;
+    const url = 'https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&query=' + query + '&language=de-CH';
 
     model.resetMovieList();
 
@@ -68,7 +70,20 @@ function showBestRated() {
 }
 
 function showMostPopular() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=' + apiKey;
+    const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=' + apiKey + '&language=de-CH';
+
+    model.resetMovieList();
+
+    $.get(url, function(data) {
+        const movies = data.results;
+        for (const movie of movies) {
+            model.addMovie(movie);
+        }
+    });
+}
+
+function showUpcoming() {
+    const url = 'https://api.themoviedb.org/3/movie/upcoming?api_key=' + apiKey + '&language=de-CH';
 
     model.resetMovieList();
 
