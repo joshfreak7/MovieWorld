@@ -7,6 +7,10 @@ import createModel from './movie-model';
 import {apiKey} from './constants.js';
 import {showDetails} from './movie-details/movie-details';
 
+// import {MongoClient} from 'mongodb';
+
+// import assert from 'assert';
+
 const $searchInput = $('#search-input');
 const $search = $('#search-bar');
 const $searchBtn = $('#search-btn');
@@ -90,7 +94,8 @@ function showBestRated() {
 }
 
 function showMostPopular() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=' + apiKey + '&language=de-CH';
+    const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key='
+        + apiKey + '&language=de-CH';
     getMovies(url);
 }
 
@@ -104,6 +109,77 @@ function showFavorites() {
     model.resetMovieList();
 
 }
+
+/*
+// Unfortunately not integrated to Movie World to save Favorites and Search History
+function connectToMongoDB() {
+    const url = 'mongodb://localhost:27017/myproject';
+
+    // Use connect method to connect to the server
+    MongoClient.connect(url, function(err, db) {
+        assert.equal(null, err);
+        console.log('Connected successfully to server');
+        const database = db.db('MoviesDB');
+        db.close();
+    });
+}
+
+// Unfortunately not integrated to Movie World to save Favorites and Search History
+const insertDocuments = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('documents');
+    // Insert some documents
+    collection.insertMany([ {a : 1}, {a : 2}, {a : 3} ],
+        function(err, result) {
+            assert.equal(err, null);
+            assert.equal(3, result.result.n); // result = the document
+            assert.equal(3, result.ops.length); // ops = the inserted docs
+            console.log('Inserted 3 documents into the collection');
+            callback(result); // Call callback function
+        });
+}
+
+// Unfortunately not integrated to Movie World to save Favorites and Search History
+const findDocuments = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('documents');
+    // Find some documents
+    collection.find({}).toArray(function(err, docs) {
+        assert.equal(err, null);
+        console.log('Found the following records');
+        console.log(docs)
+        callback(docs); // Call callback function
+    });
+}
+
+// Unfortunately not integrated to Movie World to save Favorites and Search History
+const updateDocument = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('documents');
+    // Update first document where a is 2, set b equal to 1
+    // $set updates existing attributes or inserts new attributes
+    collection.updateOne({ a : 2 } , { $set: { b : 1 } },
+        function(err, result) {
+            assert.equal(err, null);
+            assert.equal(1, result.result.n);
+            console.log('Updated document with field a equal 2');
+            callback(result);
+        });
+}
+
+// Unfortunately not integrated to Movie World to save Favorites and Search History
+const removeDocument = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('documents');
+    // Delete first document where a is 3
+    collection.deleteOne({ a : 3 }, function(err, result) {
+        assert.equal(err, null);
+        assert.equal(1, result.result.n);
+        console.log('Removed document with field a equal 3');
+        callback(result);
+    });
+}
+*/
 
 $(model).on('modelchange', () => {
     renderMovies();
